@@ -1,12 +1,13 @@
 const express = require('express');
 const morgan = require('morgan');
 
+const notesApi = require('./routes/notes');
+
 const app = express();
 
 app.use(morgan('dev'));
+app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.send('Hello world');
-});
+notesApi(app);
 
 module.exports = app;
