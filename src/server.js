@@ -3,6 +3,8 @@ const morgan = require('morgan');
 
 const { logErrors, wrapErrors, errorHandlers } = require('./utils/middleware/errorHandlers');
 const notFoundHandler = require('./utils/middleware/notFoundHandler');
+
+const authApi = require('./routes/auth');
 const notesApi = require('./routes/notes');
 
 const app = express();
@@ -12,6 +14,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 // routes
+authApi(app);
 notesApi(app);
 
 // 404 Not Found

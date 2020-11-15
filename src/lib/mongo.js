@@ -29,8 +29,8 @@ class MongoLib {
     return MongoLib.connection;
   }
 
-  getAll(collection) {
-    return this.connect().then((db) => db.collection(collection).find().toArray());
+  getAll(collection, query) {
+    return this.connect().then((db) => db.collection(collection).find(query).toArray());
   }
 
   get(collection, id) {
