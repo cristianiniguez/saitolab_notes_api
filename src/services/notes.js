@@ -32,30 +32,22 @@ class NotesService {
   }
 
   async updateNote({ id, data, userId }) {
-    try {
-      const foundedNote = await this.getNote({ id, userId });
-      if (foundedNote._id) {
-        const updatedNoteId = await this.mongoDB.update(this.collection, id, data);
-        return updatedNoteId;
-      } else {
-        throw boom.unauthorized();
-      }
-    } catch (error) {
-      throw error;
+    const foundedNote = await this.getNote({ id, userId });
+    if (foundedNote._id) {
+      const updatedNoteId = await this.mongoDB.update(this.collection, id, data);
+      return updatedNoteId;
+    } else {
+      throw boom.unauthorized();
     }
   }
 
   async deleteNote({ id, userId }) {
-    try {
-      const foundedNote = await this.getNote({ id, userId });
-      if (foundedNote._id) {
-        const deletedNoteId = await this.mongoDB.delete(this.collection, id);
-        return deletedNoteId;
-      } else {
-        throw boom.unauthorized();
-      }
-    } catch (error) {
-      throw error;
+    const foundedNote = await this.getNote({ id, userId });
+    if (foundedNote._id) {
+      const deletedNoteId = await this.mongoDB.delete(this.collection, id);
+      return deletedNoteId;
+    } else {
+      throw boom.unauthorized();
     }
   }
 }
