@@ -54,9 +54,10 @@ const notesApi = (app) => {
     passport.authenticate('jwt', { session: false }),
     validationHandler(createNoteSchema),
     async (req, res, next) => {
-      const { content } = req.body;
+      const { title, content } = req.body;
       const data = {
         userId: req.user._id,
+        title,
         content,
         createdAt: new Date(),
         updatedAt: new Date(),
