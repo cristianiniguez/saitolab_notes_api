@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const cors = require('cors');
 
 const { logErrors, wrapErrors, errorHandlers } = require('./utils/middleware/errorHandlers');
 const notFoundHandler = require('./utils/middleware/notFoundHandler');
@@ -11,6 +12,7 @@ const app = express();
 
 // settings
 app.use(morgan('dev'));
+app.use(cors());
 app.use(express.json());
 
 // routes
