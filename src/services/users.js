@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const boom = require('@hapi/boom');
 
 const MongoLib = require('../lib/mongo');
 
@@ -20,6 +21,10 @@ class UsersService {
 
   async createUser({ user }) {
     const { name, email, password } = user;
+    const findedUser = await this.getUserByEmail({ email });
+    if (findedUser) {
+      throw boom.badRequest('user with this email alredy exists');
+    }
     const hashedPassword = await bcrypt.hash(password, 10);
     const createdUserId = await this.mongoDB.create(this.collection, {
       name,
