@@ -2,6 +2,8 @@
 
 REST API de notas en markdown hecha con Express y Passport
 
+Desplegado en Vercel: https://saitolab-notes-api.vercel.app/
+
 ## Dependencias utilizadas:
 
 **_Dependencias de producción_**:
