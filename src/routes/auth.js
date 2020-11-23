@@ -31,7 +31,7 @@ const authApi = (app) => {
 
           const payload = { sub: id, name, email };
 
-          const token = jwt.sign(payload, authJwtSecret, { expiresIn: '15m' });
+          const token = jwt.sign(payload, authJwtSecret);
 
           res.status(200).json({ token, user: { id, name, email } });
         });
