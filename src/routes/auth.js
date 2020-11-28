@@ -28,10 +28,8 @@ const authApi = (app) => {
           if (error) next.unauthorized();
 
           const { _id: id, name, email } = user;
-
           const payload = { sub: id, name, email };
-
-          const token = jwt.sign(payload, authJwtSecret);
+          const token = jwt.sign(payload, authJwtSecret, { expiresIn: 86400 });
 
           res.status(200).json({ token, user: { id, name, email } });
         });
